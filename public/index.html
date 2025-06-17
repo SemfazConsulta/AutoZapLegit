@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Controle de Carne</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Controle Semanal de Carne</h1>
+
+    <form id="carne-form">
+      <h2>Consumo por dia (kg)</h2>
+      <p id="dia_hoje">dia</p>
+      <div class="semana">
+        <label>Domingo: <input type="number" name="domingo" required></label>
+        <label>Segunda: <input type="number" name="segunda" required></label>
+        <label>Terça: <input type="number" name="terca" required></label>
+        <label>Quarta: <input type="number" name="quarta" required></label>
+        <label>Quinta: <input type="number" name="quinta" required></label>
+        <label>Sexta: <input type="number" name="sexta" required></label>
+        <label>Sábado: <input type="number" name="sabado" required></label>
+      </div>
+      
+      <p id="dia_hoje"></p>
+
+      <h2>Quanto sobrou hoje?</h2>
+      <input type="number" name="restante" required>
+
+      <button type="submit">Enviar pedido</button>
+    </form>
+
+    <p class="mensagem" id="mensagem"></p>
+  </div>
+
+  <script>
+    document.getElementById('carne-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const form = new FormData(e.target);
+      const dados = Object.fromEntries(form.entries());
+
+      // converte valores para número
+      Object.keys(dados).forEach(k => dados[k] = Number(dados[k]));
+
+      try {
+        const res = await fetch('/enviar', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dados)
+        });
+
+        const data = await res.json();
+        const msg = document.getElementById('mensagem');
+        msg.textContent = data.mensagem;
+        msg.className = 'mensagem success';
+      } catch (err) {
+        const msg = document.getElementById('mensagem');
+        msg.textContent = 'Erro ao enviar mensagem.';
+        msg.className = 'mensagem error';
+      }
+    });
+
+    // Pré-carrega os valores do consumo.json
+    fetch('/consumo')
+      .then(res => res.json())
+      .then(data => {
+        for (const dia in data) {
+          const input = document.querySelector(`input[name=${dia}]`);
+          if (input) input.value = data[dia];
+        }
+      });
+  </script>
+    <script src="diaHoje.js"></script>
+</body>
+</html>
