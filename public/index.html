@@ -52,7 +52,11 @@
 
         const data = await res.json();
         const msg = document.getElementById('mensagem');
-        msg.textContent = data.mensagem;
+        msg.innerHTML = `
+        ${data.mensagem}<br>
+        <strong>Detalhes:</strong> ${data.detalhes || ''}
+    `;
+
         msg.className = 'mensagem success';
       } catch (err) {
         const msg = document.getElementById('mensagem');

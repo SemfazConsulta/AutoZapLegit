@@ -1,12 +1,19 @@
-  function atualizarDiaHoje() {
-    const diasSemana = ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'];
-    const hoje = new Date();
-    const indiceDia = hoje.getDay();
-    const nomeDia = diasSemana[indiceDia];
+function atualizarDiaHoje() {
+  const diasSemana = ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'];
+  const hoje = new Date();
 
-    const pDiaHoje = document.getElementById('dia_hoje');
-    pDiaHoje.textContent = `Hoje é ${nomeDia}.`;
+  // Se for antes das 03:00, consideramos o dia anterior
+  if (hoje.getHours() < 3) {
+    hoje.setDate(hoje.getDate() - 1);
   }
+
+  const indiceDia = hoje.getDay();
+  const nomeDia = diasSemana[indiceDia];
+
+  const pDiaHoje = document.getElementById('dia_hoje');
+  pDiaHoje.textContent = `Hoje é ${nomeDia}.`;
+}
+
 
   // Atualiza o dia agora
   atualizarDiaHoje();
