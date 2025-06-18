@@ -57,3 +57,63 @@ button:hover {
 .error {
   color: red;
 }
+
+.linha-dia {
+  margin-bottom: 10px;
+}
+
+.linha-dia label {
+  display: block;
+  font-weight: 500;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.input-wrapper input {
+  flex: 1;
+  padding: 6px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+}
+
+.input-wrapper button {
+  padding: 6px 10px;
+  font-size: 14px;
+  background-color: #28a745;
+  color: white;
+  border: 1px solid #28a745;
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.input-wrapper button:hover {
+  background-color: #218838;
+}
+
+
+
+/* RESPONSIVO */
+@media (max-width: 480px) {
+  body {
+    padding: 1rem;
+  }
+
+  .container {
+    padding: 1.5rem;
+  }
+
+  h1, h2 {
+    font-size: 1.3rem;
+  }
+
+  button {
+    font-size: 1rem;
+  }
+}

@@ -74,6 +74,16 @@ app.post('/enviar', (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
+  app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
+});
+
+app.post('/alterar-consumo', (req, res) => {
+  const novoValor = req.body;
+
+  const consumo = JSON.parse(fs.readFileSync(consumoPath, 'utf-8'));
+  Object.assign(consumo, novoValor);
+
+  fs.writeFileSync(consumoPath, JSON.stringify(consumo, null, 2));
+  res.json({ mensagem: 'Consumo atualizado com sucesso.' });
 });

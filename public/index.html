@@ -12,18 +12,44 @@
     <form id="carne-form">
       <h2>Consumo por dia (kg)</h2>
       <p id="dia_hoje">dia</p>
-      <div class="semana">
-        <label>Domingo: <input type="number" name="domingo" required></label>
-        <label>Segunda: <input type="number" name="segunda" required></label>
-        <label>Terça: <input type="number" name="terca" required></label>
-        <label>Quarta: <input type="number" name="quarta" required></label>
-        <label>Quinta: <input type="number" name="quinta" required></label>
-        <label>Sexta: <input type="number" name="sexta" required></label>
-        <label>Sábado: <input type="number" name="sabado" required></label>
-      </div>
       
-      <p id="dia_hoje"></p>
+    <div class="semana">
+      <label>Domingo:
+        <input type="number" name="domingo" required>
+        <button type="button" onclick="atualizarDia('domingo')">Alterar</button>
+      </label>
 
+      <label>Segunda:
+        <input type="number" name="segunda" required>
+        <button type="button" onclick="atualizarDia('segunda')">Alterar</button>
+      </label>
+
+      <label>Terça:
+        <input type="number" name="terca" required>
+        <button type="button" onclick="atualizarDia('terca')">Alterar</button>
+      </label>
+
+      <label>Quarta:
+        <input type="number" name="quarta" required>
+        <button type="button" onclick="atualizarDia('quarta')">Alterar</button>
+      </label>
+
+      <label>Quinta:
+        <input type="number" name="quinta" required>
+        <button type="button" onclick="atualizarDia('quinta')">Alterar</button>
+      </label>
+
+      <label>Sexta:
+        <input type="number" name="sexta" required>
+        <button type="button" onclick="atualizarDia('sexta')">Alterar</button>
+      </label>
+
+      <label>Sábado:
+        <input type="number" name="sabado" required>
+        <button type="button" onclick="atualizarDia('sabado')">Alterar</button>
+      </label>
+    </div>
+    
       <h2>Quanto sobrou hoje?</h2>
       <input type="number" name="restante" required>
 
@@ -74,6 +100,67 @@
           if (input) input.value = data[dia];
         }
       });
+
+       let diaAtual = ''; // usado para saber qual campo alterar
+
+    function atualizarDiaHoje() {
+    const diasSemana = ['domingo', 'segunda', 'terca', 'quarta', 'quinta', 'sexta', 'sabado'];
+    const hoje = new Date();
+    const indiceDia = hoje.getDay();
+    diaAtual = diasSemana[indiceDia];
+
+    const nomeDiaExtenso = ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'];
+    const pDiaHoje = document.getElementById('dia_hoje');
+    pDiaHoje.textContent = `Hoje é ${nomeDiaExtenso[indiceDia]}.`;
+  }
+
+  atualizarDiaHoje();
+
+  document.getElementById('atualizar-dia').addEventListener('click', async () => {
+    const inputDia = document.querySelector(`input[name="${diaAtual}"]`);
+    const novoValor = Number(inputDia.value);
+
+    if (isNaN(novoValor) || novoValor <= 0) {
+      alert('Insira um valor válido para hoje.');
+      return;
+    }
+
+    try {
+      const res = await fetch('/alterar-consumo', {
+        method: 'POST', // ou PATCH se quiser mais RESTful
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ [diaAtual]: novoValor })
+      });
+
+      const data = await res.json();
+      alert(`Consumo de ${diaAtual} atualizado para ${novoValor} kg.`);
+    } catch (err) {
+      alert('Erro ao atualizar consumo.');
+    }
+  });
+  function atualizarDia(dia) {
+  const input = document.querySelector(`input[name="${dia}"]`);
+  const valor = Number(input.value);
+
+  if (isNaN(valor) || valor <= 0) {
+    alert('Insira um valor válido para ' + dia);
+    return;
+  }
+
+  fetch('/alterar-consumo', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ [dia]: valor })
+  })
+    .then(res => res.json())
+    .then(data => {
+      alert(`✅ Consumo de ${dia} atualizado para ${valor} kg.`);
+    })
+    .catch(err => {
+      console.error(err);
+      alert('Erro ao atualizar consumo.');
+    });
+}
   </script>
     <script src="diaHoje.js"></script>
 </body>
