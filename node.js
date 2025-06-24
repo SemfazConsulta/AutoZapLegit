@@ -58,7 +58,10 @@ app.post('/enviar', (req, res) => {
   if (quantidadePedir === 0) {
   corpoMensagem = `Hoje sobrou o suficiente, não precisa pedir mais carne para ${diaAmanha}.`;
   } else {
-  corpoMensagem = `Preciso de ${fraldinha}kg de Fraldinha e Acém e preciso de ${gordura}kg de Gordura de peito.`;
+  corpoMensagem = `Bom dia! Segue nosso pedido do dia:
+  - ${fraldinha}kg de fraldinha
+  - ${acem}kg de acém
+  - ${gordura}kg de gordura de peito`;
   }
 
 
