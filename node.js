@@ -74,7 +74,10 @@ app.post('/enviar', (req, res) => {
   }).then(() => {
   res.json({
     mensagem: `✅ Pedido de ${quantidadePedir} Blends enviado para ${diaAmanha}.`,
-    detalhes: `Fraldinha: ${fraldinha}kg, Acém: ${acem}kg, Gordura de peito: ${gordura}kg`
+    detalhes: `Bom dia! Segue nosso pedido do dia:
+  - ${fraldinha}kg de fraldinha
+  - ${acem}kg de acém
+  - ${gordura}kg de gordura de peito`
   });
   }).catch(err => {
     console.error(err.response?.data || err.message);
