@@ -6,6 +6,24 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<!-- HEADER HTML -->
+<header class="main-header">
+  <div class="header-container">
+    <div class="logo-left">
+      <img src="LogoL&C.jpg" alt="Logo Esquerda" class="logo-img">
+    </div>
+    
+    <div class="header-divider"></div>
+    
+    <div class="logo-right">
+      <img src="LogoL&C.jpg" alt="Logo Direita" class="logo-img">
+    </div>
+  </div>
+</header>
+
+<!-- DIVISÓRIA -->
+<div class="header-separator"></div>
+
   <div class="container">
     <h1>Controle Semanal de Carne</h1>
 
@@ -58,6 +76,52 @@
 
     <p class="mensagem" id="mensagem"></p>
   </div>
+
+  <!-- FOOTER HTML -->
+<footer class="main-footer">
+  <div class="footer-container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Controle de Carne</h3>
+        <p>Sistema completo para gerenciamento e controle do consumo semanal de carne.</p>
+        <p>Mantenha seus dados organizados e tome decisões mais inteligentes.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Links Rápidos</h3>
+        <ul>
+          <li><a href="#dashboard">Dashboard</a></li>
+          <li><a href="#relatorios">Relatórios</a></li>
+          <li><a href="#configuracoes">Configurações</a></li>
+          <li><a href="#ajuda">Ajuda</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Contato</h3>
+        <ul>
+          <li>📧 contato@carnecontrol.com</li>
+          <li>📱 (11) 99999-9999</li>
+          <li>📍 São Paulo, SP</li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Suporte</h3>
+        <ul>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#manual">Manual do Usuário</a></li>
+          <li><a href="#suporte">Central de Suporte</a></li>
+          <li><a href="#feedback">Feedback</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2024 Controle de Carne. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>
 
   <script>
     document.getElementById('carne-form').addEventListener('submit', async (e) => {
@@ -163,5 +227,6 @@
 }
   </script>
     <script src="diaHoje.js"></script>
+    
 </body>
 </html>
