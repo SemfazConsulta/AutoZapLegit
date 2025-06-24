@@ -451,9 +451,9 @@ button[type="submit"]:active {
 }
 
 .logo-img {
-  height: 50px;
+  height: 150px;
   width: auto;
-  max-width: 120px;
+  max-width: 150px;
   object-fit: contain;
   transition: transform 0.3s ease, filter 0.3s ease;
   filter: brightness(1.1);
