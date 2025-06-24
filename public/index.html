@@ -10,9 +10,12 @@
     <h1>Controle Semanal de Carne</h1>
 
     <form id="carne-form">
-      <h2>Consumo por dia (kg)</h2>
+      <h2>Consumo por dia (Blend)</h2>
       <p id="dia_hoje">dia</p>
-      
+       
+      <h2>Quanto sobrou hoje?</h2>
+      <input type="number" name="restante" required placeholder="Ex: 100">
+
     <div class="semana">
       <label>Domingo:
         <input type="number" name="domingo" required>
@@ -50,9 +53,6 @@
       </label>
     </div>
     
-      <h2>Quanto sobrou hoje?</h2>
-      <input type="number" name="restante" required placeholder="Ex: 100">
-
       <button type="submit">Enviar pedido</button>
     </form>
 
