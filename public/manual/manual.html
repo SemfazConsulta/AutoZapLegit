@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manual do Sistema - Controle de Pedidos</title>
+  <link rel="icon" href="../LogoL&C.jpg">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="manual.css">
+</head>
+<body>
+<!-- HEADER HTML -->
+<header class="main-header">
+  <div class="header-container">
+    <div class="logo-left">
+      <img src="../LogoL&C.jpg" alt="Logo Desenvolvedores" class="logo-img">
+    </div>
+    
+    <div class="header-divider"></div>
+    
+    <div class="logo-right">
+      <img src="../Imagem-PNG.jpg" alt="Logo do Cliente" class="logo-img">
+    </div>
+  </div>
+</header>
+
+<!-- DIVISÓRIA -->
+<div class="header-separator"></div>
+
+<div class="main-content">
+  <div class="container manual-container">
+    <h1>📖 Manual do Sistema (Bartô)</h1>
+
+    <div class="manual-content">
+      <!-- Navegação do Manual -->
+      <nav class="manual-nav">
+        <h2>📋 Índice</h2>
+        <ul>
+          <li><a href="#introducao">🏠 Introdução</a></li>
+          <li><a href="#como-usar">🚀 Como Usar</a></li>
+          <li><a href="#funcionalidades">⚙️ Funcionalidades</a></li>
+          <li><a href="#dicas">💡 Dicas e Truques</a></li>
+          <li><a href="#solucao-problemas">🔧 Solução de Problemas</a></li>
+          <li><a href="#contato">📞 Contato e Suporte</a></li>
+        </ul>
+      </nav>
+
+      <!-- Seção Introdução -->
+      <section id="introducao" class="manual-section">
+        <h2>🏠 Introdução</h2>
+        <div class="info-box">
+          <p>Bem-vindo ao <strong>Sistema de Controle de Pedidos</strong>! Este sistema foi desenvolvido pela equipe L&C Tech para automatizar e simplificar o controle de pedidos de produtos via WhatsApp.</p>
+          <p>Com este sistema, você pode:</p>
+          <ul>
+            <li>✅ Controlar o consumo semanal de produtos</li>
+            <li>✅ Atualizar quantidades em tempo real</li>
+            <li>✅ Enviar pedidos automaticamente via WhatsApp</li>
+            <li>✅ Manter histórico organizado</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Seção Como Usar -->
+      <section id="como-usar" class="manual-section">
+        <h2>🚀 Como Usar o Sistema</h2>
+        
+        <div class="step-card">
+          <h3>Passo 1: Verificar o Dia Atual</h3>
+          <p>O sistema automaticamente identifica o dia atual e exibe na tela. Isso ajuda você a saber qual campo deve ser preenchido.</p>
+          <div class="example-box">
+            <strong>Exemplo:</strong> "Hoje é segunda-feira."
+            <p><strong>Importante: </strong> dias atualizam após as 03:00 da Manhã</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <h3>Passo 2: Inserir Quantidade Restante</h3>
+          <p>No campo "Quanto sobrou hoje?", digite a quantidade atual em estoque.</p>
+          <div class="example-box">
+            <strong>Exemplo:</strong> Se restam 50 Blends, digite "50".
+            <p>Os valores serão arredondados para multiplos de 50.</p>
+            <strong>Exemplo:</strong> precisa de 500 e sobrou 160, será pedido 350.
+          </div>
+        </div>
+
+        <div class="step-card">
+          <h3>Passo 3: Configurar Consumo Semanal</h3>
+          <p>Para cada dia da semana, insira a quantidade normalmente consumida e clique em "Alterar" para salvar.</p>
+          <div class="warning-box">
+            <strong>⚠️ Importante:</strong> Configure todos os dias da semana para cálculos precisos.
+          </div>
+        </div>
+
+        <div class="step-card">
+          <h3>Passo 4: Enviar Pedido</h3>
+            <div class="warning-box">
+              <p>Será feito um calculo quantidade que sobrou vezes o tanto de produto </p>
+              <p>Atualmente sendo o Calculo </p>
+              <p>0.08 Fraldinha e Acem e 0.02 para Gordura de peito</p>
+              <strong>Exemplo: </strong> 150 blends = 0.08 x 150, 0.02 x 150 = 12 kg de fraudinha e acém e 3kg de Gordura de peito  
+            </div>
+
+          <p>Após preencher todos os campos, clique em "Enviar pedido" para gerar automaticamente a mensagem do WhatsApp.</p>
+        </div>
+      </section>
+
+      <!-- Seção Funcionalidades -->
+      <section id="funcionalidades" class="manual-section">
+        <h2>⚙️ Funcionalidades Principais</h2>
+        
+        <div class="feature-grid">
+          <div class="feature-card">
+            <h3>📅 Detecção Automática do Dia</h3>
+            <p>O sistema identifica automaticamente o dia atual e destaca as informações relevantes.</p>
+          </div>
+
+          <div class="feature-card">
+            <h3>🔄 Atualização em Tempo Real</h3>
+            <p>Altere os valores de consumo a qualquer momento clicando no botão "Alterar".</p>
+          </div>
+
+          <div class="feature-card">
+            <h3>📱 Integração WhatsApp</h3>
+            <p>Gera automaticamente mensagens formatadas para envio via WhatsApp.</p>
+          </div>
+
+          <div class="feature-card">
+            <h3>💾 Salvamento Automático</h3>
+            <p>Todos os dados são salvos automaticamente no sistema.</p>
+          </div>
+
+          <div class="feature-card">
+            <h3>📊 Cálculos Inteligentes</h3>
+            <p>O sistema calcula automaticamente as necessidades baseadas no consumo histórico.</p>
+          </div>
+
+          <div class="feature-card">
+            <h3>🎨 Interface Responsiva</h3>
+            <p>Funciona perfeitamente em computadores, tablets e smartphones.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção Dicas -->
+      <section id="dicas" class="manual-section">
+        <h2>💡 Dicas e Truques</h2>
+        
+        <div class="tips-container">
+          <div class="tip-card">
+            <h3>🎯 Dica 1: Mantenha Dados Atualizados</h3>
+            <p>Atualize os valores de consumo regularmente para obter cálculos mais precisos.</p>
+          </div>
+
+          <div class="tip-card">
+            <h3>⏰ Dica 2: Horário Ideal</h3>
+            <p>Faça os pedidos sempre no mesmo horário para manter uma rotina organizada.</p>
+          </div>
+
+          <div class="tip-card">
+            <h3>📋 Dica 3: Verificação Dupla</h3>
+            <p>Sempre confira os valores antes de enviar o pedido para evitar erros.</p>
+          </div>
+
+          <div class="tip-card">
+            <h3>📱 Dica 4: Acesso Mobile</h3>
+            <p>Use o sistema no celular para atualizações rápidas durante o dia.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção Solução de Problemas -->
+      <section id="solucao-problemas" class="manual-section">
+        <h2>🔧 Solução de Problemas</h2>
+        
+        <div class="faq-container">
+          <div class="faq-item">
+            <h3>❓ O botão "Alterar" não está funcionando</h3>
+            <p><strong>Solução:</strong> Verifique se você inseriu um valor válido (número positivo) no campo antes de clicar em "Alterar".</p>
+          </div>
+
+          <div class="faq-item">
+            <h3>❓ A mensagem não está sendo enviada</h3>
+            <p><strong>Solução:</strong> Certifique-se de que todos os campos obrigatórios estão preenchidos e que você tem conexão com a internet.</p>
+          </div>
+
+          <div class="faq-item">
+            <h3>❓ Os valores não estão sendo salvos</h3>
+            <p><strong>Solução:</strong> Aguarde a confirmação "✅ Consumo atualizado" antes de sair da página.</p>
+          </div>
+
+          <div class="faq-item">
+            <h3>❓ O sistema está lento</h3>
+            <p><strong>Solução:</strong> Verifique sua conexão com a internet e tente recarregar a página (F5).</p>
+          </div>
+
+          <div class="faq-item">
+            <h3>❓ Erro ao carregar dados</h3>
+            <p><strong>Solução:</strong> Limpe o cache do navegador ou tente acessar em uma aba anônima/privada.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção Contato -->
+      <section id="contato" class="manual-section">
+        <h2>📞 Contato e Suporte</h2>
+        
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>👨‍💻 Charles</h3>
+            <p>📱 (69) 99270-0080</p>
+            <p>📧 l&ctech@gmail.com</p>
+            <p>🕒 Seg-Sex: 8h às 18h</p>
+          </div>
+
+          <div class="contact-card">
+            <h3>👩‍💻 Luna</h3>
+            <p>📱 (69) 99225-4900</p>
+            <p>📧 l&ctech@gmail.com</p>
+            <p>🕒 Seg-Sex: 8h às 18h</p>
+          </div>
+        </div>
+
+        <div class="support-info">
+          <h3>🆘 Suporte Técnico</h3>
+          <p>Para suporte técnico urgente, entre em contato via WhatsApp com nossa equipe. Estamos prontos para ajudar!</p>
+          <div class="support-buttons">
+            <a href="tel:+5569992700080" class="support-btn">📞 WhatsApp Charles</a>
+            <a href="tel:+5569992254900" class="support-btn">📞 WhatsApp Luna</a>
+            <a href="mailto:l&ctech@gmail.com" class="support-btn">📧 Enviar Email</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Botão Voltar -->
+      <div class="back-button-container">
+        <a href="../index.html" class="back-button">🏠 Voltar ao Sistema</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER HTML -->
+<footer class="main-footer">
+  <div class="footer-container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Controle de Pedidos</h3>
+        <p>Sistema de automação de pedidos de produtos via whatsapp</p>
+        <p>Mantenha seus dados organizados e controle tudo em alguns click.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Contato & Suporte</h3>
+        <ul>
+          <li>📧 <a href="mailto:l&ctech@gmail.com">l&ctech@gmail.com</a></li>
+          <li>📱 <a href="tel:+5569992700080">(69) 99270-0080 (Charles)</a></li>
+          <li>📱 <a href="tel:+5569992254900">(69) 99225-4900 (Luna)</a></li>
+          <li>📍 <a href="https://www.google.com/maps/place/Porto+Velho,+RO" target="_blank">Porto Velho, RO</a></li>
+          <li>📘 <a href="manual.html" target="_blank">Manual</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 Controle de Pedidos. Todos os direitos reservados a equipe L&C Tech.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Smooth scroll para navegação interna
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+
+  // Destacar seção ativa na navegação
+  window.addEventListener('scroll', () => {
+    const sections = document.querySelectorAll('.manual-section');
+    const navLinks = document.querySelectorAll('.manual-nav a');
+    
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      if (scrollY >= (sectionTop - 200)) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

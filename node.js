@@ -25,6 +25,14 @@ app.get('/consumo', (req, res) => {
   res.json(consumo);
 });
 
+function obterDiaAtual() {
+  const agora = new Date();
+  if (agora.getHours() < 3) {
+    agora.setDate(agora.getDate() - 1);
+  }
+  return agora.getDay();
+}
+
 app.post('/enviar', (req, res) => {
   const { restante, ...novoConsumo } = req.body;
 
@@ -32,7 +40,7 @@ app.post('/enviar', (req, res) => {
 
   const diasSemana = ['domingo', 'segunda', 'terca', 'quarta', 'quinta', 'sexta', 'sabado'];
 
-  const hoje = new Date().getDay();
+  const hoje = obterDiaAtual();
   const amanha = (hoje + 1) % 7;
 
   const diaAmanha = diasSemana[amanha];
