@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastrar Item - Controle de Pedidos</title>
+  <link rel="icon" href="../LogoL&C.jpg">
+  <link rel="stylesheet" href="../cadastro_produto/cadastro-produto.css">
+</head>
+<body>
+<!-- HEADER HTML -->
+<header class="main-header">
+  <div class="header-container">
+    <div class="logo-left">
+      <img src="../LogoL&C.jpg" alt="Logo Desenvolvedores" class="logo-img">
+    </div>
+    
+    <div class="header-divider"></div>
+    
+    <div class="logo-right">
+      <img src="../Imagem-PNG.jpg" alt="Logo do Cliente" class="logo-img">
+    </div>
+  </div>
+</header>
+
+<!-- DIVISÓRIA -->
+<div class="header-separator"></div>
+
+<div class="main-content">
+  <div class="container">
+    <h1>Cadastrar Novo Item</h1>
+    <form id="produto-form">
+
+      <h2>Nome do Produto</h2>
+      <input type="text" name="nome_produto" required placeholder="Ex: Hambúrguer Artesanal">
+
+      <h2>WhatsApp do Fornecedor</h2>
+      <input type="tel" name="numero_fornecedor" required placeholder="Ex: 5569991234567">
+
+      <div class="semana">
+        <label>Domingo:
+          <input type="number" name="domingo" required placeholder="0">
+          <button type="button" onclick="atualizarDia('domingo')">Alterar</button>
+        </label>
+
+        <label>Segunda:
+          <input type="number" name="segunda" required placeholder="0">
+          <button type="button" onclick="atualizarDia('segunda')">Alterar</button>
+        </label>
+
+        <label>Terça:
+          <input type="number" name="terca" required placeholder="0">
+          <button type="button" onclick="atualizarDia('terca')">Alterar</button>
+        </label>
+
+        <label>Quarta:
+          <input type="number" name="quarta" required placeholder="0">
+          <button type="button" onclick="atualizarDia('quarta')">Alterar</button>
+        </label>
+
+        <label>Quinta:
+          <input type="number" name="quinta" required placeholder="0">
+          <button type="button" onclick="atualizarDia('quinta')">Alterar</button>
+        </label>
+
+        <label>Sexta:
+          <input type="number" name="sexta" required placeholder="0">
+          <button type="button" onclick="atualizarDia('sexta')">Alterar</button>
+        </label>
+
+        <label>Sábado:
+          <input type="number" name="sabado" required placeholder="0">
+          <button type="button" onclick="atualizarDia('sabado')">Alterar</button>
+        </label>
+      </div>
+      
+      <button type="submit">Cadastrar Item e Enviar Pedido</button>
+    </form>
+
+    <p class="mensagem" id="mensagem"></p>
+
+    <div class="navigation-back">
+      <button onclick="voltarHome()" class="back-button">
+        ← Voltar ao Menu Principal
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER HTML -->
+<footer class="main-footer">
+  <div class="footer-container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Controle de Pedidos</h3>
+        <p>Sistema de automação de pedidos de produtos via whatsapp</p>
+        <p>Mantenha seus dados organizados e controle tudo em alguns click.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Contato & Suporte</h3>
+        <ul>
+          <li>📘 <a href="manual/manual.html">Manual</a></li>
+          <li>📧 <a href="mailto:lectechdev@gmail.com">lectechdev@gmail.com</a></li>
+          <li>📱 <a href="tel:+5569992700080">(69) 99270-0080 (Charles)</a></li>
+          <li>📱 <a href="tel:+5569992254900">(69) 99225-4900 (Luna)</a></li>
+          <li>📍 <a href="https://www.google.com/maps/place/Porto+Velho,+RO" target="_blank">Porto Velho, RO</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 Controle de Pedidos. Todos os direitos reservados a equipe L&C Tech.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('produto-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const form = new FormData(e.target);
+    const dados = Object.fromEntries(form.entries());
+
+    // Converte valores numéricos
+    const camposNumericos = [ 'domingo', 'segunda', 'terca', 'quarta', 'quinta', 'sexta', 'sabado'];
+    camposNumericos.forEach(campo => {
+      if (dados[campo]) dados[campo] = Number(dados[campo]);
+    });
+
+    try {
+      const res = await fetch('/cadastrar-produto', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dados)
+      });
+
+      const data = await res.json();
+      const msg = document.getElementById('mensagem');
+      msg.innerHTML = `
+        ${data.mensagem}<br>
+        <strong>Detalhes:</strong> ${data.detalhes || ''}
+      `;
+
+      msg.className = 'mensagem success';
+      
+      // Limpa o formulário após sucesso
+      if (data.sucesso) {
+        document.getElementById('produto-form').reset();
+        atualizarDiaHoje();
+      }
+    } catch (err) {
+      const msg = document.getElementById('mensagem');
+      msg.textContent = 'Erro ao cadastrar produto e enviar pedido.';
+      msg.className = 'mensagem error';
+    }
+  });
+
+  // Carrega dados existentes do produto se houver
+  async function carregarDadosProduto() {
+    try {
+      const res = await fetch('/produtos');
+      const produtos = await res.json();
+      
+      // Se houver produtos cadastrados, pré-carrega o último
+      if (produtos.length > 0) {
+        const ultimoProduto = produtos[produtos.length - 1];
+        for (const dia in ultimoProduto.consumo_semanal) {
+          const input = document.querySelector(`input[name=${dia}]`);
+          if (input) input.value = ultimoProduto.consumo_semanal[dia];
+        }
+      }
+    } catch (err) {
+      console.log('Nenhum produto encontrado para pré-carregar');
+    }
+  }
+
+  let diaAtual = '';
+
+  function atualizarDiaHoje() {
+    const diasSemana = ['domingo', 'segunda', 'terca', 'quarta', 'quinta', 'sexta', 'sabado'];
+    const hoje = new Date();
+    const indiceDia = hoje.getDay();
+    diaAtual = diasSemana[indiceDia];
+
+    const nomeDiaExtenso = ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'];
+    const pDiaHoje = document.getElementById('dia_hoje');
+    pDiaHoje.textContent = `Hoje é ${nomeDiaExtenso[indiceDia]}.`;
+  }
+
+  function atualizarDia(dia) {
+    const input = document.querySelector(`input[name="${dia}"]`);
+    const valor = Number(input.value);
+
+    if (isNaN(valor) || valor < 0) {
+      alert('Insira um valor válido para ' + dia);
+      return;
+    }
+
+    // Atualização local - pode ser expandida para salvar no servidor
+    alert(`✅ Consumo de ${dia} definido como ${valor} unidades.`);
+  }
+
+  function voltarHome() {
+    window.location.href = '/public/home/home.html';
+  }
+
+  // Inicializa a página
+  atualizarDiaHoje();
+  carregarDadosProduto();
+</script>
+
+<script src="cadastro-produto.js"></script>
+
+</body>
+</html>

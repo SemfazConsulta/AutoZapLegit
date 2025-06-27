@@ -27,6 +27,12 @@
 <!-- DIVISÓRIA -->
 <div class="header-separator"></div>
 
+        <div class="navigation-back">
+      <button onclick="voltarHome()" class="back-button">
+        ← Voltar ao Menu Principal
+      </button>
+    </div>
+
   <div class="container">
     <h1>Controle Semanal de Carne</h1>
     <form id="carne-form">
@@ -212,9 +218,15 @@
       console.error(err);
       alert('Erro ao atualizar consumo.');
     });
+  function voltarHome() {
+    window.location.href = '/home/home.html';
+  }
+
 }
   </script>
     <script src="diaHoje.js"></script>
+    <script src="home.js"></script>
+
     
 </body>
 </html>

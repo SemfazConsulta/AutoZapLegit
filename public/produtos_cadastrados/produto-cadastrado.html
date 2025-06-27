@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produtos Cadastrados - Controle de Pedidos</title>
+  <link rel="icon" href="../LogoL&C.jpg">
+  <link rel="stylesheet" href="produto-cadastrado.css">
+</head>
+<body>
+<!-- HEADER HTML -->
+<header class="main-header">
+  <div class="header-container">
+    <div class="logo-left">
+      <img src="../LogoL&C.jpg" alt="Logo Desenvolvedores" class="logo-img">
+    </div>
+    
+    <div class="header-divider"></div>
+    
+    <div class="logo-right">
+      <img src="../Imagem-PNG.jpg" alt="Logo do Cliente" class="logo-img">
+    </div>
+  </div>
+</header>
+
+<!-- DIVISÓRIA -->
+<div class="header-separator"></div>
+
+<div class="main-content">
+  <div class="navigation-back">
+    <button onclick="voltarHome()" class="back-button">
+      ← Voltar ao Menu Principal
+    </button>
+  </div>
+
+  <div class="container">
+    <h1>Produtos Cadastrados</h1>
+    
+    <div class="search-section">
+      <div class="search-container">
+        <input type="text" id="search-input" placeholder="Buscar produto..." class="search-input">
+        <button onclick="buscarProdutos()" class="search-button">🔍</button>
+      </div>
+      
+      <div class="filter-container">
+        <select id="filter-status" class="filter-select">
+          <option value="todos">Todos os produtos</option>
+          <option value="ativos">Apenas ativos</option>
+          <option value="inativos">Apenas inativos</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="stats-section">
+      <div class="stat-card">
+        <span class="stat-number" id="total-produtos">0</span>
+        <span class="stat-label">Total de Produtos</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" id="produtos-ativos">0</span>
+        <span class="stat-label">Produtos Ativos</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" id="fornecedores">0</span>
+        <span class="stat-label">Fornecedores</span>
+      </div>
+    </div>
+
+    <div class="produtos-grid" id="produtos-grid">
+      <!-- Produto exemplo - Blend -->
+      <div class="produto-card exemplo" onclick="abrirProduto('blend')">
+        <div class="produto-header">
+          <h3 class="produto-nome">Blend</h3>
+          <span class="produto-status ativo">Ativo</span>
+        </div>
+        <div class="produto-info">
+          <p class="produto-fornecedor">📱 5569991234567</p>
+          <p class="produto-consumo">📊 Consumo: 350 kg/semana</p>
+          <p class="produto-data">📅 Cadastrado em: 15/01/2025</p>
+        </div>
+        <div class="produto-footer">
+          <span class="produto-tipo">Carne</span>
+          <button class="produto-btn">Ver Detalhes</button>
+        </div>
+      </div>
+      
+      <!-- Produtos serão carregados aqui dinamicamente -->
+    </div>
+
+    <div class="loading" id="loading" style="display: none;">
+      <div class="spinner"></div>
+      <p>Carregando produtos...</p>
+    </div>
+
+    <div class="empty-state" id="empty-state" style="display: none;">
+      <div class="empty-icon">📦</div>
+      <h3>Nenhum produto encontrado</h3>
+      <p>Não há produtos cadastrados no sistema ainda.</p>
+      <button onclick="window.location.href='cadastrar-item.html'" class="add-product-btn">
+        + Cadastrar Primeiro Produto
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER HTML -->
+<footer class="main-footer">
+  <div class="footer-container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Controle de Pedidos</h3>
+        <p>Sistema de automação de pedidos de produtos via whatsapp</p>
+        <p>Mantenha seus dados organizados e controle tudo em alguns click.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Contato & Suporte</h3>
+        <ul>
+          <li>📘 <a href="manual/manual.html">Manual</a></li>
+          <li>📧 <a href="mailto:lectechdev@gmail.com">lectechdev@gmail.com</a></li>
+          <li>📱 <a href="tel:+5569992700080">(69) 99270-0080 (Charles)</a></li>
+          <li>📱 <a href="tel:+5569992254900">(69) 99225-4900 (Luna)</a></li>
+          <li>📍 <a href="https://www.google.com/maps/place/Porto+Velho,+RO" target="_blank">Porto Velho, RO</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 Controle de Pedidos. Todos os direitos reservados a equipe L&C Tech.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="produto-cadastrado.js"></script>
+
+</body>
+</html>

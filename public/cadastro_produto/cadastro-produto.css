@@ -151,7 +151,7 @@ body {
 }
 
 .container {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   background: var(--white);
   border-radius: 20px;
@@ -191,7 +191,7 @@ h2::after {
 }
 
 /* ===== FORMULÁRIO ===== */
-#carne-form {
+#produto-form {
   padding: 40px;
 }
 
@@ -289,7 +289,9 @@ h2::after {
 }
 
 /* ===== INPUTS E BOTÕES ===== */
-input[name="restante"] {
+input[name="nome_produto"],
+input[name="numero_fornecedor"],
+input[name="estoque_atual"] {
   width: 100%;
   padding: 15px 20px;
   border: 2px solid var(--border-gray);
@@ -300,18 +302,9 @@ input[name="restante"] {
   background: var(--light-gray);
 }
 
-input[name="numero_fornecedor"]{
-  width: 100%;
-  padding: 15px 20px;
-  border: 2px solid var(--border-gray);
-  border-radius: 12px;
-  font-size: 1.1rem;
-  margin-bottom: 30px;
-  transition: var(--transition-fast);
-  background: var(--light-gray);
-}
-
-input[name="restante"]:focus {
+input[name="nome_produto"]:focus,
+input[name="numero_fornecedor"]:focus,
+input[name="estoque_atual"]:focus {
   outline: none;
   border-color: var(--primary-blue);
   background: var(--white);
@@ -342,6 +335,35 @@ button[type="submit"]:hover {
 
 button[type="submit"]:active {
   transform: translateY(-1px);
+}
+
+/* ===== NAVEGAÇÃO ===== */
+.navigation-back {
+  padding: 20px 40px;
+  border-top: 2px solid var(--border-gray);
+  background: var(--light-gray);
+}
+
+.back-button {
+  background: linear-gradient(135deg, var(--border-gray), var(--light-gray));
+  color: var(--primary-blue);
+  border: 2px solid var(--primary-blue);
+  padding: 12px 25px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.back-button:hover {
+  background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3);
 }
 
 /* ===== MENSAGENS ===== */
@@ -469,25 +491,6 @@ button[type="submit"]:active {
   margin: 0;
 }
 
-/* ===== SCROLLBAR PERSONALIZADA ===== */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, var(--primary-blue), var(--primary-yellow));
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, var(--primary-yellow), var(--primary-blue));
-}
-
 /* ===== ANIMAÇÕES ===== */
 @keyframes fadeInUp {
   from {
@@ -521,27 +524,13 @@ button[type="submit"]:active {
 }
 
 /* Delays para animação dos labels da semana */
-.semana label:nth-child(1) {
-  animation-delay: 0.1s;
-}
-.semana label:nth-child(2) {
-  animation-delay: 0.2s;
-}
-.semana label:nth-child(3) {
-  animation-delay: 0.3s;
-}
-.semana label:nth-child(4) {
-  animation-delay: 0.4s;
-}
-.semana label:nth-child(5) {
-  animation-delay: 0.5s;
-}
-.semana label:nth-child(6) {
-  animation-delay: 0.6s;
-}
-.semana label:nth-child(7) {
-  animation-delay: 0.7s;
-}
+.semana label:nth-child(1) { animation-delay: 0.1s; }
+.semana label:nth-child(2) { animation-delay: 0.2s; }
+.semana label:nth-child(3) { animation-delay: 0.3s; }
+.semana label:nth-child(4) { animation-delay: 0.4s; }
+.semana label:nth-child(5) { animation-delay: 0.5s; }
+.semana label:nth-child(6) { animation-delay: 0.6s; }
+.semana label:nth-child(7) { animation-delay: 0.7s; }
 
 /* ===== RESPONSIVIDADE ===== */
 @media (max-width: 768px) {
@@ -576,7 +565,7 @@ button[type="submit"]:active {
     padding: 20px 15px;
   }
 
-  #carne-form {
+  #produto-form {
     padding: 20px;
   }
 
@@ -606,6 +595,10 @@ button[type="submit"]:active {
     width: auto;
     min-width: 120px;
     padding: 12px 20px;
+  }
+
+  .navigation-back {
+    padding: 15px 20px;
   }
 
   .footer-content {
@@ -649,29 +642,4 @@ button[type="submit"]:active {
   .footer-container {
     padding: 0 20px;
   }
-}
-  .navigation-back {
-    padding: 15px 20px;
-  }
-
-  .back-button {
-  background: linear-gradient(135deg, var(--border-gray), var(--light-gray));
-  color: var(--primary-blue);
-  border: 2px solid var(--primary-blue);
-  padding: 12px 25px;
-  border-radius: 10px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition-fast);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.back-button:hover {
-  background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-  color: var(--white);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3);
 }
