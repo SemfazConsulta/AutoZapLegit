@@ -58,7 +58,10 @@ app.post('/enviar', (req, res) => {
   if (quantidadePedir === 0) {
   corpoMensagem = `Hoje sobrou o suficiente, não precisa pedir mais carne para ${diaAmanha}.`;
   } else {
-  corpoMensagem = `Preciso de ${fraldinha}kg de Fraldinha e Acém e preciso de ${gordura}kg de Gordura de peito.`;
+  corpoMensagem = `Bom dia! Segue nosso pedido do dia:
+  - ${fraldinha}kg de fraldinha
+  - ${acem}kg de acém
+  - ${gordura}kg de gordura de peito`;
   }
 
 
@@ -74,7 +77,10 @@ app.post('/enviar', (req, res) => {
   }).then(() => {
   res.json({
     mensagem: `✅ Pedido de ${quantidadePedir} Blends enviado para ${diaAmanha}.`,
-    detalhes: `Fraldinha: ${fraldinha}kg, Acém: ${acem}kg, Gordura de peito: ${gordura}kg`
+    detalhes: `Bom dia! Segue nosso pedido do dia:
+  - ${fraldinha}kg de fraldinha
+  - ${acem}kg de acém
+  - ${gordura}kg de gordura de peito`
   });
   }).catch(err => {
     console.error(err.response?.data || err.message);
