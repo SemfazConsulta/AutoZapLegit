@@ -34,7 +34,7 @@ function obterDiaAtual() {
 }
 
 app.post('/enviar', (req, res) => {
-  const { restante, ...novoConsumo } = req.body;
+const { restante, numero_entregador, ...novoConsumo } = req.body;
 
   fs.writeFileSync(consumoPath, JSON.stringify(novoConsumo, null, 2));
 
@@ -53,20 +53,16 @@ app.post('/enviar', (req, res) => {
   const acem = (quantidadePedir * 0.08).toFixed(0);
   const gordura = (quantidadePedir * 0.02).toFixed(0);
 
-  let corpoMensagem = '';
-
-  if (quantidadePedir === 0) {
-  corpoMensagem = `Hoje sobrou o suficiente, não precisa pedir mais carne para ${diaAmanha}.`;
-  } else {
-  corpoMensagem = `Bom dia! Segue nosso pedido do dia:
+  let corpoMensagem = quantidadePedir === 0
+    ? `Hoje sobrou o suficiente, não precisa pedir mais carne para ${diaAmanha}.`
+    : `Bom dia! Segue nosso pedido do dia:
   - ${fraldinha}kg de fraldinha
   - ${acem}kg de acém
   - ${gordura}kg de gordura de peito`;
-  }
 
 
   axios.post('https://gate.whapi.cloud/messages/text', {
-    to: NUMERO_DESTINO,
+  to: numero_entregador || NUMERO_DESTINO,
     body: corpoMensagem
   }, {
     headers: {
@@ -75,13 +71,10 @@ app.post('/enviar', (req, res) => {
       Accept: 'application/json'
     }
   }).then(() => {
-  res.json({
-    mensagem: `✅ Pedido de ${quantidadePedir} Blends enviado para ${diaAmanha}.`,
-    detalhes: `Bom dia! Segue nosso pedido do dia:
-  - ${fraldinha}kg de fraldinha
-  - ${acem}kg de acém
-  - ${gordura}kg de gordura de peito`
-  });
+    res.json({
+      mensagem: `✅ Pedido de ${quantidadePedir} Blends enviado para ${diaAmanha}.`,
+      detalhes: corpoMensagem
+    });
   }).catch(err => {
     console.error(err.response?.data || err.message);
     res.status(500).json({ mensagem: '❌ Erro ao enviar o pedido.' });

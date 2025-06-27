@@ -300,6 +300,17 @@ input[name="restante"] {
   background: var(--light-gray);
 }
 
+input[name="numero_fornecedor"]{
+  width: 100%;
+  padding: 15px 20px;
+  border: 2px solid var(--border-gray);
+  border-radius: 12px;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  transition: var(--transition-fast);
+  background: var(--light-gray);
+}
+
 input[name="restante"]:focus {
   outline: none;
   border-color: var(--primary-blue);
